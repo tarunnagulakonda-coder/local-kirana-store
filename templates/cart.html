@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="cart-container" style="max-width: 600px; margin: 20px auto;">
+    <h2>MY CART</h2>
+    <div id="cartItems" class="glass-effect" style="padding: 20px; border-radius: 8px;">
+        <!-- JS will populate this -->
+        <p>Loading cart...</p>
+    </div>
+    <div class="cart-summary glass-effect"
+        style="margin-top: 20px; padding: 20px; border-radius: 8px; text-align: right;">
+        <h3>TOTAL: ₹<span id="cartTotal">0</span></h3>
+        <button id="orderNowBtn" class="primary-btn pulse-animation" style="width: auto; padding: 10px 40px;"
+            onclick="placeOrder()" disabled>ORDER NOW</button>
+    </div>
+</div>
+{% endblock %}

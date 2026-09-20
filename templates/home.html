@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="home-container">
+    <aside class="sidebar">
+        <h3>Categories</h3>
+        <ul id="categoryList">
+            <li><a href="#" class="category-link active" data-id="all">All Products</a></li>
+            {% for cat in categories %}
+            <li><a href="#" class="category-link" data-id="{{ cat.id }}">{{ cat.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </aside>
+    <section class="products-area">
+        <h2 id="currentCategoryTitle">All Products</h2>
+        <div class="product-grid" id="productGrid">
+            {% for prod in products %}
+            <div class="product-card" data-cat="{{ prod.category_id }}" data-name="{{ prod.name|lower }}">
+                <div class="img-wrapper">
+                    <img src="{{ url_for('static', filename='uploads/' + (prod.image_url or 'placeholder.jpg')) }}"
+                        alt="{{ prod.name }}" onerror="this.src='https://via.placeholder.com/200?text={{ prod.name }}'">
+                </div>
+                <h4>{{ prod.name }}</h4>
+                <p class="category-tag">{{ prod.category.name }}</p>
+                <p class="price">₹{{ prod.price }}</p>
+                <button class="add-btn pulse-animation"
+                    onclick="openProductModal({{ prod.id }}, '{{ prod.name }}', {{ prod.price }}, '{{ prod.image_url or 'placeholder.jpg' }}')">ADD</button>
+            </div>
+            {% endfor %}
+            <div id="noResults" class="hidden">No products found.</div>
+        </div>
+    </section>
+</div>
+
+<!-- Product Modal -->
+<div id="productModal" class="modal hidden">
+    <div class="modal-content glass-effect scale-in">
+        <span class="close-btn" onclick="closeProductModal()">&times;</span>
+        <img id="modalImg" src="" alt="Product" onerror="this.src='https://via.placeholder.com/200?text=Product'">
+        <h3 id="modalName">Name</h3>
+        <p id="modalPrice" class="price">₹0</p>
+
+        <div class="quantity-control">
+            <label>Quantity:</label>
+            <div class="qty-btn-group">
+                <button type="button" onclick="decrementQty()">-</button>
+                <input type="number" id="modalQty" value="1" min="1" readonly>
+                <button type="button" onclick="incrementQty()">+</button>
+            </div>
+        </div>
+
+        <div class="requirement-control">
+            <label>Additional Requirement (Optional):</label>
+            <textarea id="modalReq" placeholder="e.g., Please give fresh tomatoes."></textarea>
+        </div>
+
+        <button class="primary-btn pulse-animation" onclick="addToCart()">ADD TO CART</button>
+    </div>
+</div>
+{% endblock %}

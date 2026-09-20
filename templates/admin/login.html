@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-body" style="font-family: 'Outfit', sans-serif;">
+    <div class="login-container glass-effect">
+        <h2 style="font-family: monospace;">================================<br>ADMIN
+            LOGIN<br>================================</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <p style="color: red; font-weight: bold;">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/admin/login">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit" class="primary-btn pulse-animation">LOGIN</button>
+        </form>
+    </div>
+</body>
+
+</html>

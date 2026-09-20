@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .admin-nav {
+            background: #34495e;
+            color: white;
+            display: flex;
+            padding: 15px 30px;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .admin-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .admin-nav a:hover {
+            background: #2c3e50;
+        }
+
+        .admin-body {
+            background: #ecf0f1;
+        }
+
+        .alert {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .alert-error {
+            background: #ffcccc;
+            color: #cc0000;
+        }
+
+        .alert-success {
+            background: #ccffcc;
+            color: #006600;
+        }
+    </style>
+</head>
+
+<body class="admin-body">
+    <nav class="admin-nav">
+        <strong>ADMIN DASHBOARD</strong>
+        <a href="/admin/dashboard">Home</a>
+        <a href="/admin/add_product">➕ Add Product</a>
+        <a href="/admin/edit_products">✏️ Edit Products</a>
+        <a href="/admin/categories">📂 Manage Categories</a>
+        <a href="/admin/orders">📦 Orders</a>
+        <a href="/admin/logout" style="margin-left:auto;">Logout</a>
+    </nav>
+    <main style="padding: 20px;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<div style="max-width: 600px; margin: 0 auto;">
+    <div class="glass-effect" style="padding: 20px; margin-bottom: 30px;">
+        <h2>Add New Category</h2>
+        <form method="POST" action="/admin/categories" style="display: flex; gap: 10px;">
+            <input type="text" name="name" required placeholder="Category Name"
+                style="flex:1; padding:10px; border-radius:5px; border:1px solid #ccc;">
+            <button type="submit" class="primary-btn pulse-animation" style="width:auto;">+ ADD CATEGORY</button>
+        </form>
+    </div>
+
+    <h2>EXISTING CATEGORIES</h2>
+    {% for cat in categories %}
+    <div class="glass-effect"
+        style="margin-bottom: 20px; padding: 20px; display: flex; align-items: center; justify-content: space-between;">
+        <form method="POST" action="/admin/categories/{{ cat.id }}/edit"
+            style="display: flex; gap: 10px; align-items: center; flex: 1;">
+            <input type="text" name="name" value="{{ cat.name }}" required
+                style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; flex:1;">
+            <button type="submit" class="primary-btn" style="width:auto; padding: 8px 15px;">Edit</button>
+        </form>
+        <form method="POST" action="/admin/categories/{{ cat.id }}/delete"
+            onsubmit="return confirm('Are you sure you want to delete this category?');" style="margin-left: 10px;">
+            <button type="submit" class="primary-btn"
+                style="width:auto; padding: 8px 15px; background: #e74c3c;">Delete</button>
+        </form>
+    </div>
+    {% else %}
+    <p>No categories available.</p>
+    {% endfor %}
+</div>
+{% endblock %}

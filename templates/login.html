@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+    <div class="login-container glass-effect">
+        <h1>Welcome to Our Store</h1>
+        
+        <form method="POST" action="/login" class="login-form">
+            <div class="form-group">
+                <label>Customer Name</label>
+                <input type="text" name="name" required placeholder="John Doe">
+            </div>
+            
+            <div class="form-group">
+                <label>Area</label>
+                <select name="area" required>
+                    <option value="" disabled selected>Select Area ▼</option>
+                    <option value="Area 1">Area 1</option>
+                    <option value="Area 2">Area 2</option>
+                    <option value="Area 3">Area 3</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="text" name="mobile" required pattern="\d{10}" placeholder="10-digit number">
+            </div>
+            
+            <div class="form-group">
+                <label>House Number</label>
+                <input type="text" name="house_no" required placeholder="A-123">
+            </div>
+
+            <button type="submit" class="primary-btn pulse-animation">CONTINUE</button>
+        </form>
+    </div>
+</body>
+</html>

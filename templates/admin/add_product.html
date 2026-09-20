@@ -1,0 +1,43 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<div class="glass-effect" style="max-width: 500px; margin: 0 auto; padding: 30px;">
+    <h2>Add New Product</h2>
+    <form method="POST" action="/admin/add_product" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" name="name" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+            <select name="category_id" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="" disabled selected>Select Category ▼</option>
+                {% for cat in categories %}
+                <option value="{{ cat.id }}">{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Product Image</label>
+            <input type="file" name="image" accept="image/*" style="width: 100%;">
+        </div>
+        <div class="form-group">
+            <label>Expiry Date</label>
+            <input type="text" name="expiry_date" placeholder="DD/MM/YYYY"
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number" step="0.01" name="price" required
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" name="description"
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <button type="submit" class="primary-btn pulse-animation">ADD PRODUCT</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<div class="glass-effect"
+    style="max-width: 800px; margin: 0 auto; padding: 40px; border-radius: 10px; text-align: center; font-family: monospace;">
+    <h2 style="font-size: 1.5em; line-height: 1.5; margin-bottom: 30px;">
+        ┌─────────────────────────────┐<br>
+        │ ADMIN DASHBOARD │<br>
+        ├─────────────────────────────┤
+    </h2>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; font-size: 1.3em;">
+        <a href="/admin/add_product"
+            style="text-decoration:none; color:inherit; width: 300px; display: flex; justify-content: space-between;"><span>│
+                ➕ Add Product</span><span>│</span></a>
+        <a href="/admin/edit_products"
+            style="text-decoration:none; color:inherit; width: 300px; display: flex; justify-content: space-between;"><span>│
+                ✏️ Edit Products</span><span>│</span></a>
+        <a href="/admin/categories"
+            style="text-decoration:none; color:inherit; width: 300px; display: flex; justify-content: space-between;"><span>│
+                📂 Manage Categories</span><span>│</span></a>
+        <a href="/admin/orders"
+            style="text-decoration:none; color:inherit; width: 300px; display: flex; justify-content: space-between;"><span>│
+                📦 Orders</span><span>│</span></a>
+    </div>
+    <h2 style="font-size: 1.5em; line-height: 1.5; margin-top: 30px;">
+        └─────────────────────────────┘
+    </h2>
+</div>
+{% endblock %}

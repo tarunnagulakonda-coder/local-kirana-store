@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirana Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Using Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/">🏠 Home</a>
+        </div>
+        
+        <div class="nav-search">
+            <input type="text" id="searchInput" placeholder="🔍 Search products...">
+            <button onclick="handleSearch()">Search</button>
+        </div>
+        
+        <div class="nav-links">
+            <a href="/cart" class="cart-btn">🛒 Cart <span id="cartCount" class="badge">0</span></a>
+            <div class="profile-dropdown">
+                <button class="profile-btn">👤 Profile</button>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/profile/orders">Previous Orders</a>
+                    <a href="/profile/bills">Bills</a>
+                    <a href="/admin/login">Admin Login</a>
+                    <a href="/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
